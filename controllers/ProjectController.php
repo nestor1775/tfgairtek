@@ -1,28 +1,30 @@
 <?php
-require_once('models/Project.php');
-session_start();
-class ProjectController {
+require_once __DIR__ . '/../models/project.php';
 
-    public function newProjectForm() {
-        include('views/createProject.php');  
-    }
+if (!class_exists('ProjectController')) {
+    class ProjectController {
 
-    public function create() {
-        if (isset($_POST['nombre']) && isset($_POST['id_administrador'])) {
-            $nombre = $_POST['nombre'];
-            $id_administrador = $_POST['id_administrador'];
+        public function newProjectForm() {
+            include __DIR__ . '/../views/createProject.php';  
+        }
 
-            if (!empty($nombre) && !empty($id_administrador)) {
+        public function create() {
+            if (isset($_POST['nombre']) && isset($_POST['id_administrador'])) {
+                $nombre = $_POST['nombre'];
+                $id_administrador = $_POST['id_administrador'];
 
-                $projectModel = new Project();
-                $projectModel->newProject($nombre, $id_administrador);
-                header("Location: index.php?action=dashboard"); 
-                
-        } else {
-                echo "Por favor, completa todos los campos del formulario.";
+                if (!empty($nombre) && !empty($id_administrador)) {
+
+                    $projectModel = new Project();
+                    $projectModel->newProject($nombre, $id_administrador);
+                    header("Location: index.php?action=dashboard"); 
+                    
+            } else {
+                    echo "Por favor, completa todos los campos del formulario.";
+                }
+            } else {
+                echo "algo paso";
             }
-        } else {
-            echo "algo paso";
         }
     }
 }

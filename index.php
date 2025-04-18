@@ -2,9 +2,10 @@
 session_start();
 
 // controladores
-require_once('controllers/AuthController.php');
-require_once('controllers/projectController.php');
-require_once('controllers/parteController.php');
+require_once __DIR__ . '/controllers/AuthController.php';
+require_once __DIR__ . '/controllers/ProjectController.php';
+require_once __DIR__ . '/controllers/ParteController.php';
+require_once __DIR__ . '/controllers/WorkerController.php';
 
 
 $action = $_GET['action'] ?? null;
@@ -20,6 +21,8 @@ if ($action === null) {
 
 $authController = new AuthController();
 $projectController = new ProjectController();
+$parteController = new ParteController();
+$workerController = new WorkerController();
 
 // Verificar la acción y procesarla
 switch ($action) {
@@ -45,7 +48,7 @@ switch ($action) {
             exit(); // Detener la ejecución del script
         }
         // Si está logueado, mostrar el dashboard
-        include('views/dashboard.php');
+        include __DIR__ . '/views/dashboard.php';
         break;
 
     case 'createProject':

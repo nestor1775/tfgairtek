@@ -5,18 +5,9 @@ $controller = new ParteController();
 $workerController = new WorkerController();
 $proyecto= $controller->mostrarPartePorToken();
 $workers= $workerController->getWorkers();
-print_r($proyecto)
+// Incluir el header
+include_once __DIR__ . '/templates/header.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
 
     <form action="done.php" method="POST">
     
@@ -45,14 +36,14 @@ print_r($proyecto)
     <label for="extraHours">horas extras</label>
     <select id="extraHours" name="extraHours" required>
         <option value="1" selected>si</option>
-        <option value="0" selected>no</option>
+        <option value="0">no</option>
         
     </select><br>
 
     <label for="festiveDay">dia festivo</label>
     <select id="festiveDay" name="festiveDay" required>
         <option value="1" selected>si</option>
-        <option value="0" selected>no</option>
+        <option value="0">no</option>
         
     </select><br>
 
@@ -81,76 +72,11 @@ print_r($proyecto)
 
 
 
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
-<script>
-    // Crear las variables para los SignaturePad de cada canvas
-    const canvasCliente = document.getElementById("firmaCliente");
-    const signaturePadCliente = new SignaturePad(canvasCliente);
+<script src="../js/signature.js"></script>
 
-    const canvasAirtek = document.getElementById("firmaAirtek");
-    const signaturePadAirtek = new SignaturePad(canvasAirtek);
+<?php
+// Incluir el footer
+include_once __DIR__ . '/templates/footer.php';
+?>
 
-    // Función para ajustar el tamaño de cada canvas y asegurar que las firmas se dibujen bien
-    function resizeCanvas(signaturePad, canvas) {
-        const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        
-        const width = canvas.offsetWidth;
-        const height = canvas.offsetHeight;
-
-        canvas.width = width * ratio;
-        canvas.height = height * ratio;
-
-        canvas.style.width = width + "px";
-        canvas.style.height = height + "px";
-
-        canvas.getContext("2d").scale(ratio, ratio);
-
-        signaturePad.clear(); // Limpiar la firma si cambia el tamaño
-    }
-
-    // Ajustar el tamaño de los canvas cuando se redimensiona la ventana
-    window.addEventListener("resize", function() {
-        resizeCanvas(signaturePadCliente, canvasCliente);
-        resizeCanvas(signaturePadAirtek, canvasAirtek);
-    });
-
-    // Inicializar los canvas para que se ajusten al tamaño correcto desde el principio
-    resizeCanvas(signaturePadCliente, canvasCliente);
-    resizeCanvas(signaturePadAirtek, canvasAirtek);
-
-    // Función para borrar la firma
-    function borrarFirma(canvasId) {
-        if (canvasId === 'firmaCliente') {
-            signaturePadCliente.clear();
-        } else if (canvasId === 'firmaAirtek') {
-            signaturePadAirtek.clear();
-        }
-    }
-
-    // Función para capturar las firmas y guardarlas como base64 en los inputs ocultos
-    document.querySelector("form").addEventListener("submit", function(e) {
-        if (!signaturePadCliente.isEmpty()) {
-            const firmaClienteBase64 = signaturePadCliente.toDataURL();
-            document.getElementById("firma_base64_cliente").value = firmaClienteBase64;
-        } else {
-            alert("Por favor firma el campo de la empresa origen antes de enviar.");
-            e.preventDefault();
-        }
-
-        if (!signaturePadAirtek.isEmpty()) {
-            const firmaAirtekBase64 = signaturePadAirtek.toDataURL();
-            document.getElementById("firma_base64_airtek").value = firmaAirtekBase64;
-        } else {
-            alert("Por favor firma el campo de Air Tek antes de enviar.");
-            e.preventDefault();
-        }
-    });
-</script>
-
-
-
-</body>
-</html>
