@@ -1,0 +1,15 @@
+{
+    "name": "liliana/tfgnestor",
+    "autoload": {
+        "psr-4": {
+            "Liliana\\Tfgnestor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nestor",
+            "email": "nestorgomez123450@gmail.com"
+        }
+    ],
+    "require": {}
+}

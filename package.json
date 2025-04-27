@@ -16,5 +16,8 @@
     "daisyui": "^5.0.22",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.9"
   }
 }

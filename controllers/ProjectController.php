@@ -26,5 +26,35 @@ if (!class_exists('ProjectController')) {
                 echo "algo paso";
             }
         }
+
+        public function getAll() {
+            $projectModel = new Project();
+            return $projectModel->getAll();
+        }
+
+        public function getById($id) {
+            $projectModel = new Project();
+            return $projectModel->getById($id);
+        }
+
+        public function getActive() {
+            $projectModel = new Project();
+            return $projectModel->getActive();
+        }
+
+        public function getNotActive() {
+            $projectModel = new Project();
+            return $projectModel->getNotActive();
+        }
+
+        public function offProject($id_proyecto) {
+            $projectModel = new project();
+            $projectModel->offProject($id_proyecto);
+        }
+
+        public function onProject($id_proyecto) {
+            $projectModel = new project();
+            $projectModel->onProject($id_proyecto);
+        }
     }
 }

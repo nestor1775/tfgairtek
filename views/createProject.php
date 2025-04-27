@@ -1,37 +1,39 @@
-
-
-
-
 <?php
 require_once __DIR__ . '/../models/user.php'; 
 $user = new User();
 $admins = $user->getAll();
 
+// Define las variables necesarias
+$pageTitle = "Crear Proyecto";
+$basePath = "../"; // Ajusta según la ubicación de la página
+$additionalCss = ''; // CSS adicional específico de la página
+$additionalScripts = ''; // Scripts adicionales específicos de la página
+
 // Incluir el header
 include_once __DIR__ . '/templates/header.php';
-
 ?>
+<div class="m-4">
+    <form class="flex flex-col mx-auto " action="index.php?action=createProject" method="POST">
+        <label class="text-lg mb-1" for="nombre">Nombre del Proyecto:</label>
+        <input class=" border-2 p-1 border-gray-200 rounded-md w-full" type="text" id="nombre" name="nombre" required><br>
 
-<form action="index.php?action=createProject" method="POST">
-    <label for="nombre">Nombre del Proyecto:</label>
-    <input type="text" id="nombre" name="nombre" required><br>
+        <label class="text-lg mb-1  " for="id_administrador">ID del Administrador:</label>
+        <select class=" border-2 p-1 border-gray-200 rounded-md w-full" id="id_administrador" name="id_administrador" required>
+            <option  value="" disabled selected>Selecciona un Administrador</option>
+            <?php
+            // Iterar sobre los administradores y crear una opción para cada uno
+            foreach ($admins as $admin) {
+                echo "<option value=\"" . $admin['id'] . "\">" . $admin['nombre_usuario'] . "</option>";
+            }
+            ?>
+        </select><br>
 
-    <label for="id_administrador">ID del Administrador:</label>
-    <select id="id_administrador" name="id_administrador" required>
-        <option value="" disabled selected>Selecciona un Administrador</option>
-        <?php
-        // Iterar sobre los administradores y crear una opción para cada uno
-        foreach ($admins as $admin) {
-            echo "<option value=\"" . $admin['id'] . "\">" . $admin['nombre_usuario'] . "</option>";
-        }
-        ?>
-    </select><br>
+        <button class=" btn self-center " type="submit">Crear Proyecto</button>
+    </form>
+</div>
 
-    <button type="submit">Crear Proyecto</button>
-</form>
 
 <?php
 // Incluir el footer
 include_once __DIR__ . '/templates/footer.php';
-
 ?>

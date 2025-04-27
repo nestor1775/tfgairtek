@@ -1,6 +1,5 @@
-    </main>
     <!-- Footer -->
-    <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content py-4 mt-auto">
         <div>
             <p>Copyright © 2024 - Todos los derechos reservados por Nestor Gomez ❤️</p>
         </div>
@@ -8,6 +7,4 @@
 
     <!-- Scripts -->
     <script src="<?php echo $basePath; ?>js/script.js"></script>
-    <?php if (isset($additionalScripts)) echo $additionalScripts; ?>
-</body>
-</html> 
+    <?php if (isset($additionalScripts)) echo $additionalScripts; ?> 

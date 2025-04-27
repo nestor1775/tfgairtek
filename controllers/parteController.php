@@ -20,6 +20,11 @@ if (!class_exists('ParteController')) {
             return $proyecto;
         }
 
+        public function getPartesByProjectId($id_proyecto) {
+            $parteModel = new Parte();
+            return $parteModel->getPartesByProjectId($id_proyecto);
+        }
+
         public function createNewParte($id_proyecto,$id_trabajador,$fecha,$horas_trabajadas,$horas_extra,$dia_festivo,$observaciones,$firma_responsable_empresaorigen,$firma_responsable_airtek) {
 
             $parteModel = new Parte();
@@ -27,6 +32,25 @@ if (!class_exists('ParteController')) {
 
             return $newparte;
         }
+
+        public function getAllPartes() {
+            $parteModel = new Parte();
+            $partes = $parteModel->getAll();
+
+            echo json_encode($partes);
+        }
+
+        public function getCountByMonth() {
+            $parteModel = new Parte();
+            $data = $parteModel->getCountByMonth();
+            // Limitar solo a los últimos 3 meses
+            $data = array_slice($data, -3);
+            echo json_encode($data);
+        }
+
+        
     }
+
+    
 }
 ?>
