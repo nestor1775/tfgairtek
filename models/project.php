@@ -28,7 +28,7 @@ class project {
     }
     
 
-    public function newProjectLOCALHOST($nombre,$id_admin) {
+    public function newProject($nombre,$id_admin) {
         // Generar enlace único (puede ser UUID o una cadena aleatoria)
         $token = bin2hex(random_bytes(16)); // genera 32 caracteres hexadecimales
         $link_parte = "http://localhost:5000/views/parte.php?token=" . $token;
@@ -45,12 +45,12 @@ class project {
         $stmt->close();
     }
 
-    public function newProject($nombre, $id_admin) {
+    public function newProjectngrok($nombre, $id_admin) {
         // Generar enlace único (puede ser UUID o una cadena aleatoria)
         $token = bin2hex(random_bytes(16)); // genera 32 caracteres hexadecimales
     
         // Usar la URL pública de Ngrok en lugar de localhost
-        $ngrok_url = " https://b312-206-204-157-109.ngrok-free.app"; // Cambia esto con la URL que te da Ngrok
+        $ngrok_url = "  https://81e1-92-187-188-14.ngrok-free.app"; // Cambia esto con la URL que te da Ngrok
     
         // Crear el enlace completo con el token
         $link_parte = $ngrok_url . "/views/parte.php?token=" . $token;

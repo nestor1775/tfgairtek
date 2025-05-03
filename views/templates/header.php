@@ -39,14 +39,16 @@ $basePath = isset($basePath) ? $basePath : '../';
                         </svg>
                     </label>
                 </div>
+                
             </header>
-
+            
             <!-- Contenedor principal -->
             <main class="container mx-auto p-4  ">
                 <!-- El contenido específico de cada página irá aquí -->
             </main>
         </div>
         <div class="drawer-side z-20">
+            
             <label for="my-drawer" class="drawer-overlay"></label>
             <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 <li>

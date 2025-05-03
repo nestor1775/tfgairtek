@@ -17,6 +17,7 @@ if (!class_exists('AuthController')) {
 
             if ($usuario) {
                 $_SESSION['usuario'] = $usuario;
+                
                 header("Location: index.php?action=dashboard");
             } else {
                 $error = "Credenciales incorrectas";

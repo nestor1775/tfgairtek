@@ -7,6 +7,7 @@ $additionalScripts = ''; // Scripts adicionales específicos de la página
 
 // Incluir el header
 include_once __DIR__ . '/templates/header.php';
+
 ?>
 
     <h1 class="m-4 text-lg flex justify-center capitalize"><?php echo $proyecto['nombre']; ?></h1>
@@ -17,22 +18,34 @@ include_once __DIR__ . '/templates/header.php';
     </div>
 
     <?php 
-    
-    if ($proyecto['is_activo'] == 0) {
+
+
+    if($_SESSION['usuario']['rol']==0){
+        if ($proyecto['is_activo'] == 0) {
+            ?>
+            <form class="flex justify-center mt-4" action="index.php?action=onProject" method="POST">
+                <input type="hidden" name="id_proyecto" value="<?php echo $proyecto['id']; ?>">
+                <button class="btn bg-sky-600 text-white  " type="submit">Activar proyecto</button>
+            </form>
+            <?php
+        } else if ($proyecto['is_activo'] == 1) {
+            ?>
+            <form class="flex justify-center mt-4" action="index.php?action=offProject" method="POST">
+                <input type="hidden" name="id_proyecto" value="<?php echo $proyecto['id']; ?>">
+                <button class="btn bg-red-600 text-white  " type="submit">Inactivar proyecto</button>
+            </form>
+            <?php
+        }
+    } elseif ($_SESSION['usuario']['rol']==1) {
         ?>
-        <form class="flex justify-center mt-4" action="index.php?action=onProject" method="POST">
-            <input type="hidden" name="id_proyecto" value="<?php echo $proyecto['id']; ?>">
-            <button class="btn bg-sky-600 text-white  " type="submit">Activar proyecto</button>
-        </form>
-        <?php
-    } else if ($proyecto['is_activo'] == 1) {
-        ?>
-        <form class="flex justify-center mt-4" action="index.php?action=offProject" method="POST">
-            <input type="hidden" name="id_proyecto" value="<?php echo $proyecto['id']; ?>">
-            <button class="btn bg-red-600 text-white  " type="submit">Inactivar proyecto</button>
-        </form>
-        <?php
+            <form class="flex justify-center mt-4" action="<?php echo $proyecto['link_parte']; ?>" method="POST">
+                <input type="hidden" name="id_proyecto" value="<?php echo $proyecto['id']; ?>">
+                <button class="btn bg-sky-600 text-white  " type="submit">Rellenar parte</button>
+            </form>
+            <?php
     }
+    
+    
     ?>
 
 

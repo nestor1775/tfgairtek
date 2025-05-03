@@ -15,7 +15,8 @@ include_once __DIR__ . '/templates/header.php';
 <ul>
     <?php
     foreach ($proyectosInactivos as $inactivo) {
-        echo "<li class='m-4'>
+        if($inactivo["id_administrador"] == '3') {
+            echo "<li class='m-4'>
                     <a href='index.php?action=viewProject&id=" . $inactivo['id'] . "'
                     class='block bg-white shadow-lg p-4 rounded-lg hover:bg-gray-100 cursor-pointer h-full w-full'>
                         <span class='text-gray-800 font-semibold'>
@@ -23,7 +24,9 @@ include_once __DIR__ . '/templates/header.php';
                         </span>
                     </a>
                 </li>
-";
+                ";
+        }
+        
     }
     ?>
 </ul>

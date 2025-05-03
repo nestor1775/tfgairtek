@@ -43,15 +43,22 @@ switch ($action) {
         // Verificar si el usuario está logueado antes de permitir el acceso al dashboard
         if (!isset($_SESSION['usuario'])) {
             header("Location: index.php?action=loginForm");
-            exit(); // Detener la ejecución del script
+            exit();    // Detener la ejecución del script
         }
         // Obtener los proyectos usando el controlador
         $proyectos = $projectController->getAll();
         $proyectosActivos = $projectController->getActive();
         $proyectosInactivos = $projectController->getNotActive();
         // Si está logueado, mostrar el dashboard
-        include __DIR__ . '/views/dashboard.php';
-        break;
+
+        if ($_SESSION['usuario']['rol']==0){
+            include __DIR__ . '/views/dashboard.php';
+            break;
+        }elseif ($_SESSION['usuario']['rol']==1){
+            include __DIR__ . '/views/dashboardV2.php';
+            break;
+        }
+        
 
     case 'createProject':
         $projectController->create(); // Mostrar formulario

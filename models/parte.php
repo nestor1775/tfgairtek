@@ -33,8 +33,8 @@ class Parte {
 
 
 
-    public function getbyToken($token) {
-        $link = ' https://b312-206-204-157-109.ngrok-free.app/views/parte.php?token=' . $token;
+    public function getbyTokenNGROK($token) {
+        $link = '  https://81e1-92-187-188-14.ngrok-free.app/views/parte.php?token=' . $token;
 
         $stmt = $this->db->prepare("SELECT * FROM Proyectos WHERE link_parte = ?");
         $stmt->bind_param("s", $link);
@@ -44,7 +44,7 @@ class Parte {
         return $proyecto;
     }
 
-    public function getbyTokenLOCALHOST($token) {
+    public function getbyToken($token) {
         $link = 'http://localhost:5000/views/parte.php?token=' . $token;
 
         $stmt = $this->db->prepare("SELECT * FROM Proyectos WHERE link_parte = ?");
